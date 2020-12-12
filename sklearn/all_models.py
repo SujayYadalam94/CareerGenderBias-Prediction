@@ -137,8 +137,8 @@ def plot_accuracy():
     plt.plot(f, logreg_chi, label='Logistic Regression')
     plt.plot(f, nn_chi, label='MLP')
     plt.title("Without Latencies: Chi-Squared")
-    plt.xlabel("Accuracy")
-    plt.ylabel("Number of Features")
+    plt.xlabel("Number of Features")
+    plt.ylabel("Accuracy")
     plt.legend()
     plt.show()
 
@@ -167,8 +167,8 @@ def plot_time():
     plt.plot(f, knn_time, label='Logistic Regression')
     plt.plot(f, nn_time, label='MLP')
     plt.title("Without Latencies: Chi-Squared")
-    plt.xlabel("Runtime")
-    plt.ylabel("Number of Features")
+    plt.xlabel("Number of Features")
+    plt.ylabel("Runtime")
     plt.legend()
     plt.show()
 
