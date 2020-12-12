@@ -1,5 +1,6 @@
 from __future__ import division
 import sys
+import os
 import numpy as np
 import random
 import csv
@@ -31,7 +32,8 @@ def create_input(input_csv):
             writer.writerow(sample)
 
     out_file.close() 
-    reader = csv.reader(open("pre-processed.csv", "rb"), delimiter=",") 
+    reader = csv.reader(open("pre-processed.csv", "rb"), delimiter=",")
+    os.remove("pre-processed.csv")
     features = next(reader)
     X = list(reader)
     X = np.array(X).astype("float")
@@ -202,7 +204,6 @@ def create_folds(X, num_folds):
     X1 = Xsort[split:]
     len_X0 = int(len(X0) / num_folds)
     len_X1 = int(len(X1) / num_folds)
-    print (len(X0), len(X1))
     
     folds = []
     for i in range(num_folds):
@@ -248,11 +249,11 @@ if __name__ == "__main__":
             if y == row[0]:
                 correct += 1
 
-        print "Accuracy = %f" % (correct/len(folds[j]))
+        print ("Accuracy = %f" % (correct/len(folds[j])))
         total_correct += correct
         total_input_size += len(folds[j])
 
-    print "TOTAL ACCURACY = %f" % (total_correct/total_input_size)
+    print ("TOTAL ACCURACY = %f" % (total_correct/total_input_size))
     end = time.time()
     total_time = end - start
     print ("TOTAL TIME ELAPSED: %f" % total_time)
