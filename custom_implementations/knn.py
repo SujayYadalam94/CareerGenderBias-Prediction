@@ -136,7 +136,7 @@ def main():
 	#run cross validation with different number of k
 	accuracy = []
 	runtime = []
-	for k in range(1, 6):
+	for k in range(1, 7):
 		print("k = %d" % (k*5))
 		start_time = time.time()
 		accuracy.append(np.mean(knn_cross_valid(10, x.shape[0], x.to_numpy(), y.to_numpy(), k*5)))
