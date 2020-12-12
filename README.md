@@ -13,5 +13,5 @@ python custom_implementation/knn.py dataset/with_latencies.csv
 
 To run all models built using sklearn:
 ```
-python sklear/all_models.py dataset/without_latencies.csv
+python sklearn/all_models.py dataset/without_latencies.csv
 ```
