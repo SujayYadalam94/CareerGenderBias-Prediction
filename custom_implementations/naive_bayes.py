@@ -5,7 +5,7 @@ import numpy as np
 import random
 import csv
 import time
-from math import floor,sqrt,exp,pi
+import math
 from collections import Counter
 
 # Global Variables
@@ -96,12 +96,14 @@ def prepare_distributions(X):
     while i < len(X[0]):
         feat = features[i+1]
         col = X[:,i]
-        # Test metrics modelled as Gaussian
-        if feat.find("Met:") != -1:
-            # For Gaussian, we need avg and var
+        # Test metrics modelled as Gamma distributions
+        if feat.find("Mn") != -1 or feat.find("pct") != -1 or feat.find("PCT") != -1 or feat.find("N_ERROR") != -1:
+            # For Gamma, we need alpha and beta
             l = ["G"]
-            l.append(np.average(col))
-            l.append(np.var(col, ddof=len(X)-1))
+            mean = np.average(col)
+            var = np.var(col, ddof=len(X)-1)
+            l.append((mean**2)/var)
+            l.append(mean/var)
         # Other features modelled as multinomial
         else:
             # For Multinomial, we need counts and total
@@ -125,11 +127,12 @@ def calc_feat_prob(feat, x, y):
     else:
         l = dist_X1[feat]
 
-    # Gaussian distribution
+    # Gamma distribution
     if l[0] == "G":
-        mean = l[1]
-        var = l[2]
-        prob = (1.0 / sqrt(2*pi*var)) * exp(-((x-mean)**2/(2*var)))
+        alpha = l[1]
+        beta = l[2]
+        gamma = math.gamma(alpha)
+        prob = (beta**alpha) * (x**(alpha-1)) * math.exp(-beta*x) / gamma
         return prob
     # Multinomial distribution
     elif l[0] == "M":
