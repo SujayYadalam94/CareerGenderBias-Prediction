@@ -136,24 +136,24 @@ def main():
 	#run cross validation with different number of k
 	accuracy = []
 	runtime = []
-	for k in range(1, 7):
+	for k in range(1, 10):
 		print("k = %d" % (k*5))
 		start_time = time.time()
 		accuracy.append(np.mean(knn_cross_valid(10, x.shape[0], x.to_numpy(), y.to_numpy(), k*5)))
-		print(accuracy[k])
+		print(accuracy[k-1])
 		end_time = time.time()
 		runtime.append(end_time - start_time)
-		print(runtime[k])
+		print(runtime[k-1])
 
 	#plot accuracy
-	plt.bar([5, 10, 15, 20, 25, 30], accuracy)
+	plt.bar([5, 10, 15, 20, 25, 30, 35, 40, 45], accuracy)
 	plt.title("K Nearest Neighbors")
 	plt.ylabel("accuracy")
 	plt.xlabel("k")
 	plt.show()
 
 	#plot runtime
-	plt.bar([5, 10, 15, 20, 25, 30], runtime)
+	plt.bar([5, 10, 15, 20, 25, 30, 35, 40, 45], runtime)
 	plt.title("K Nearest Neighbors")
 	plt.ylabel("runtime")
 	plt.xlabel("k")
