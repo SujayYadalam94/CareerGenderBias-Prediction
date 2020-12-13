@@ -106,8 +106,8 @@ def run_all_models(x_fs, y, n_features):
     
     # Logistic Regression
     a = time.time()
-    clf = SVC()
-    clf.fit(x_fs, y.to_numpy().ravel())
+    model = LogisticRegression()
+    model.fit(x_fs, y.to_numpy().ravel())
     cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=1)
     scores = cross_val_score(clf, x_fs, y.to_numpy().ravel(), scoring='accuracy', cv=cv, n_jobs=-1, error_score='raise')
     b = time.time()

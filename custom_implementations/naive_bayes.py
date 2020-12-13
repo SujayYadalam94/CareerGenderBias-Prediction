@@ -20,7 +20,7 @@ def create_input(input_csv):
     global features
 
     out_file = open("pre-processed.csv", "w")
-    reader = csv.reader(open(input_csv,"rb"), delimiter=",")
+    reader = csv.reader(open(input_csv,"r"), delimiter=",")
     writer = csv.writer(out_file, delimiter=',')
 
     for sample in reader:
@@ -32,7 +32,7 @@ def create_input(input_csv):
             writer.writerow(sample)
 
     out_file.close() 
-    reader = csv.reader(open("pre-processed.csv", "rb"), delimiter=",")
+    reader = csv.reader(open("pre-processed.csv", "r"), delimiter=",")
     os.remove("pre-processed.csv")
     features = next(reader)
     X = list(reader)
