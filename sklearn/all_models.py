@@ -154,7 +154,7 @@ def plot_time():
     for features in times_chi:
         dt_time.append(times_chi[features]['dt'])
         rf_time.append(times_chi[features]['rf'])
-        gnb_time.append(times_chi[features]['gnn'])
+        gnb_time.append(times_chi[features]['gnb'])
         knn_time.append(times_chi[features]['knn'])
         svm_time.append(times_chi[features]['svm'])
         logreg_time.append(times_chi[features]['logreg'])
